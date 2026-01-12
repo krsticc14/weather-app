@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body class="<%= weather ? weather.main : '' %>">
+    <div class="app">
+    <h1 class="title">Thunder and Lightning</h1>
+    <form action="/weather" method="POST">
+        <input type="text" name="city" placeholder="Enter City" required autocomplete="off">
+        <button type="submit">Get Forecast</button>
+    </form>
+
+    <% if (error) { %>
+        <p class="error"><%= error %></p>
+    <% } %>
+
+    <% if (weather) { %>
+        <div class="weather-card">
+            <h2><%= weather.city %></h2>
+            <img src="https://openweathermap.org/img/wn/<%= weather.icon %>@2x.png">
+            <p class="temp">Temperature: <%= weather.temp %> °C</p>
+            <p> <%= weather.description %></p>
+            <p>Humidity: <%= weather.humidity %></p>
+            <p>Wind Speed: <%= weather.windSpeed %> m/s</p>
+            <p>Sunrise: <%= weather.sunrise %></p>
+            <p>Sunset: <%= weather.sunset %></p>
+        </div>
+    <% } %>
+    <% if (forecast) { %>
+        <h2>5-Day Forecast</h2>
+        <div class="forecast-container">
+            <% forecast.forEach(day => { %>
+                <div class="forecast-card">
+                    <h3><%= day.date %></h3>
+                    <img src="https://openweathermap.org/img/wn/<%= day.icon %>@2x.png">
+                    <p><%= day.temp %> °C</p>
+                    <p><%= day.description %></p>
+                </div>
+                <% }) %>
+        </div>
+        <% } %>
+
+        <button type="button" onClick="getLocation()">Use my location</button>
+        
+         <script>
+        function getLocation() {
+            if(!("geolocation" in navigator)) {
+                alert("Geolocation is not supported by your browser");
+                return;
+            };
+            navigator.geolocation.getCurrentPosition(async (position) => {
+                const lat = position.coords.latitude;
+                const lon = position.coords.longitude;
+
+                window.location.href = `/weather/location?lat=${lat}&lon=${lon}`;
+            }, () => {
+                alert("Unable to retrieve your location");
+            });
+        }
+    </script>
+    </div>
+</body>
+</html>

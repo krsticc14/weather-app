@@ -1,0 +1,152 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    background: linear-gradient(to bottom, #4facfe, #00f2fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background 0.5s ease;
+    font-family: "Inter" sans-serif;
+}
+
+.app {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(12px);
+    padding: 2rem;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    color: white;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.2) ;
+}
+
+.title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-family: "Poppins", sans-serif;
+    font-size: 1rem;
+}
+
+button {
+   background: linear-gradient(135deg, #4facfe, #00f2fe);
+    border: none;
+    border-radius: 12px;
+    padding: 12px 22px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: white;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    opacity: 0.95;
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.weather-card {
+    background: rgba(255,255,255,0.2);
+    padding: 1.5rem;
+    border-radius: 20px;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.weather-card img {
+    width: 80px;
+}
+
+.temp {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+.forecast-container {
+    display: grid;
+    grid-template-columns: repeat(autofit, minmax(100px, 1fr));
+    gap: 10px;
+}
+
+.forecast-card {
+    background: rgba(255,255,255,0.2);
+    padding: 10px;
+    border-radius: 15px;
+    text-align: center;
+    transition: transform 0.2s ease;
+}
+
+.forecast-card:hover {
+    transform: translateY(-5px);
+}
+
+body.clear { background: linear-gradient(to bottom, #fbc531, #4cd137); }
+body.clouds { background: linear-gradient(to bottom, #7f8fa6, #353b48); }
+body.rain { background: linear-gradient(to bottom, #487eb0, #192a56); }
+body.snow { background: linear-gradient(to bottom, #dcdde1, #7f8fa6); }
+body.thunderstorm { background: linear-gradient(to bottom, #2f3640, #000); }
+
+.title, h1, h2, h3 {
+    font-family: "Poppins", sans-serif;
+}
+
+.forecast-card p {
+    font-size: 0.9rem;
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+    .forecast-card {
+        flex: 1 1 100px;
+        min-width: unset;
+    }
+    .weather-card {
+        width: 100px;
+    }
+    input, button {
+        width: 100%;
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 400px) {
+    .title {
+        font-size: 1.8rem;
+    }
+    .weather-card h2 {
+        font-size: 1.4rem;
+    }
+    .forecast-card h3 {
+        font-size: 1rem;
+    }
+    .forecast-card p {
+        font-size: 0.85rem;
+    }
+}
